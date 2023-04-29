@@ -63,7 +63,9 @@ export function calculateStrength(password) {
   if (hasLowercase) strength += 1;
   if (hasNumbers) strength += 1;
   if (hasSymbols) strength += 1;
-  if (passwordLength >= 8) strength += 1;
+
+  // Cap the strength value to 4
+  strength = Math.min(strength, 4);
 
   return strength;
 }

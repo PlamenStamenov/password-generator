@@ -1,14 +1,14 @@
 import React from 'react';
 
+import './Options.scss';
+
 function Options({ options, setOptions }) {
     const handleChange = (event) => {
         setOptions({ ...options, [event.target.name]: event.target.checked });
     };
 
     return (
-
-
-        <div>
+        <section className='password__options'>
             <label htmlFor="">
                 <input
                     type="checkbox"
@@ -16,7 +16,7 @@ function Options({ options, setOptions }) {
                     checked={options.uppercase}
                     onChange={handleChange}
                 />
-                Uppercase
+                Include Uppercase Letters
             </label>
             <label htmlFor="">
                 <input
@@ -25,7 +25,7 @@ function Options({ options, setOptions }) {
                     checked={options.lowercase}
                     onChange={handleChange}
                 />
-                Lowercase
+                Include Lowercase Letters
             </label>
             <label htmlFor="">
                 <input
@@ -34,7 +34,7 @@ function Options({ options, setOptions }) {
                     checked={options.numbers}
                     onChange={handleChange}
                 />
-                Numbers
+                Include Numbers
             </label>
             <label htmlFor="">
                 <input
@@ -43,11 +43,9 @@ function Options({ options, setOptions }) {
                     checked={options.symbols}
                     onChange={handleChange}
                 />
-                Symbols
+                Include Symbols
             </label>
-        </div>
-
-
+        </section>
     );
 }
 
