@@ -9,7 +9,7 @@ function Options({ options, setOptions }) {
 
     return (
         <section className='password__options'>
-            <label htmlFor="">
+            <label>
                 <input
                     type="checkbox"
                     name="uppercase"
@@ -18,7 +18,7 @@ function Options({ options, setOptions }) {
                 />
                 Include Uppercase Letters
             </label>
-            <label htmlFor="">
+            <label>
                 <input
                     type="checkbox"
                     name="lowercase"
@@ -27,7 +27,7 @@ function Options({ options, setOptions }) {
                 />
                 Include Lowercase Letters
             </label>
-            <label htmlFor="">
+            <label>
                 <input
                     type="checkbox"
                     name="numbers"
@@ -36,7 +36,7 @@ function Options({ options, setOptions }) {
                 />
                 Include Numbers
             </label>
-            <label htmlFor="">
+            <label>
                 <input
                     type="checkbox"
                     name="symbols"
