@@ -10,7 +10,7 @@ function PasswordLength({ length, setLength }) {
     return (
         <section className="password__length">
             <label>
-                Charachter Length <span>{length}</span>
+                Character Length <span>{length}</span>
             </label>
 
             <input
