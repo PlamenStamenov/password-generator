@@ -35,37 +35,29 @@ export function generatePassword(options) {
 export function calculateStrength(password) {
   const passwordLength = password.length;
 
-  let hasUppercase = false;
-  let hasLowercase = false;
-  let hasNumbers = false;
-  let hasSymbols = false;
+  let characterSetSize = 0;
 
-  for (let i = 0; i < passwordLength; i++) {
-    const char = password[i];
-
-    if (!hasUppercase && CHARSET.uppercase.includes(char)) {
-      hasUppercase = true;
-    }
-    if (!hasLowercase && CHARSET.lowercase.includes(char)) {
-      hasLowercase = true;
-    }
-    if (!hasNumbers && CHARSET.numbers.includes(char)) {
-      hasNumbers = true;
-    }
-    if (!hasSymbols && CHARSET.symbols.includes(char)) {
-      hasSymbols = true;
-    }
+  if (password.match(/[A-Z]/)) {
+    characterSetSize += CHARSET.uppercase.length;
+  }
+  if (password.match(/[a-z]/)) {
+    characterSetSize += CHARSET.lowercase.length;
+  }
+  if (password.match(/[0-9]/)) {
+    characterSetSize += CHARSET.numbers.length;
+  }
+  if (password.match(/[\!\@\#\$\%\^\&\*\(\)\_\-\+\=\<\>\?\/]/)) {
+    characterSetSize += CHARSET.symbols.length;
   }
 
-  let strength = 0;
+  const passwordStrength = passwordLength * Math.log2(characterSetSize);
 
-  if (hasUppercase) strength += 1;
-  if (hasLowercase) strength += 1;
-  if (hasNumbers) strength += 1;
-  if (hasSymbols) strength += 1;
+  // Normalize the password strength to a value between 0 and 1
+  const normalizedStrength = passwordStrength / (Math.log2(95) * 32); // Assuming maximum strength as 32 characters with 95 possible characters
 
-  // Cap the strength value to 4
-  strength = Math.min(strength, 4);
+  // Map the normalized strength to a value between 1 and 4
+  const strengthValue = Math.ceil(normalizedStrength * 4);
 
-  return strength;
+  // Ensure the strength value is within the range of 1 to 4
+  return Math.min(Math.max(strengthValue, 1), 4);
 }
