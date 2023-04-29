@@ -18,7 +18,7 @@ function PasswordLength({ length, setLength }) {
                 type="range"
                 name="length"
                 min="1"
-                max="30"
+                max="20"
                 value={length}
                 onChange={handleChange}
             />
